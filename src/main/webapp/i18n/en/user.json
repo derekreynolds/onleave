@@ -1,0 +1,21 @@
+{
+    "user": {
+        "title": "Users",
+        "form": {
+            "email": "Login",
+            "email.placeholder": "Enter email",
+            "firstName": "First Name",
+            "firstName.placeholder": "Enter first name",
+            "lastName": "Last Name",
+            "lastName.placeholder": "Enter last name"
+        },
+        "messages": {
+            "error": {
+                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+            }
+        },
+        "password" : {
+            "forgot": "Did you forget your password?"
+        }
+    }
+}

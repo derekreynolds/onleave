@@ -1,0 +1,4 @@
+$system-admin-color: #151B54;
+$admin-color: lighten($system-admin-color, 15);
+$manager-color: lighten($system-admin-color, 30);
+$user-color: lighten($system-admin-color, 45);
