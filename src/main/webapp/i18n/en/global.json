@@ -32,6 +32,11 @@
                 "main":"Admin",
                 "user": "Users"
             },
+            "request": {
+                "main": "My Requests",
+                "annual": "Annual Leave",
+                "study": "Study Leave"
+            },
             "language": "Language",
             "login": "Login"
         },
