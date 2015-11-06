@@ -12,17 +12,19 @@
 		    <div class="col-sm-4">
 		    	<input type="text" class="form-control" ng-model="user.firstName"/>		      	
 		    </div>
+		</div>
+		<div class="form-group">
 		    <label class="col-sm-2 control-label" translate="user.form.lastName">Last Name</label>
 		    <div class="col-sm-4">
 		      	<input type="text" class="form-control" ng-model="user.lastName"/>
 		    </div>
 	    </div>
 	    <div class="form-group">
-	    	<div class="col-sm-offset-10 col-sm-1">
-	    		<a class="btn btn-default btn-block" ui-sref="admin.user.list" translate="global.button.cancel">Cancel</a>	      		
+	    	<div class="col-sm-offset-8 col-sm-2 col-xs-6">
+	    		<a class="btn btn-default btn-block btn-raised" ui-sref="admin.user.list" translate="global.button.cancel">Cancel</a>	      		
 	    	</div>
-	    	<div class="col-sm-1">
-	    		<a class="btn btn-primary btn-block" ui-sref="admin.user.edit({id: user.id})" translate="global.button.save">Save</a>
+	    	<div class="col-sm-2 col-xs-6">
+	    		<a class="btn btn-primary btn-block btn-raised" ui-sref="admin.user.edit({id: user.id})" translate="global.button.save">Save</a>
 	    	</div>
   		</div>
 	</form>

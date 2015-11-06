@@ -11,8 +11,6 @@
     "CC-BY-3.0"
   ],
   "main": [
-    "css/font-awesome.css",
-    "css/font-awesome.min.css",
     "less/font-awesome.less",
     "scss/font-awesome.scss"
   ],
@@ -34,5 +32,5 @@
   },
   "_source": "git://github.com/FortAwesome/Font-Awesome.git",
   "_target": "~4.4.0",
-  "_originalSource": "fontawesome"
+  "_originalSource": "font-awesome"
 }

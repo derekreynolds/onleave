@@ -12,20 +12,22 @@
 		    <div class="col-sm-4">
 		      	<p class="form-control-static">{{user.firstName}}</p>
 		    </div>
+		</div>
+		<div class="form-group">
 		    <label class="col-sm-2 control-label" translate="user.form.lastName">Last Name</label>
 		    <div class="col-sm-4">
 		      	<p class="form-control-static">{{user.lastName}}</p>
 		    </div>
 	    </div>
 	    <div class="form-group">
-	    	<div class="col-sm-offset-6 col-sm-1">
-	    		<a class="btn btn-default btn-block" ui-sref="admin.user.list" translate="global.button.cancel">Cancel</a>	      		
+	    	<div class="col-sm-offset-6 col-sm-2">
+	    		<a class="btn btn-default btn-block btn-raised" ui-sref="admin.user.list" translate="global.button.cancel">Cancel</a>	      		
 	    	</div>
-	    	<div class="col-sm-1">
-	    		<a class="btn btn-primary btn-block" ui-sref="admin.user.edit({id: user.id})" translate="global.button.edit">Edit</a>
+	    	<div class="col-sm-2">
+	    		<a class="btn btn-primary btn-block btn-raised" ui-sref="admin.user.edit({id: user.id})" translate="global.button.edit">Edit</a>
 	    	</div>
-	    	<div class="col-sm-1">
-	    		<a class="btn btn-danger btn-block" ui-sref="admin.user.list" translate="global.button.delete">Delete</a>
+	    	<div class="col-sm-2">
+	    		<a class="btn btn-danger btn-block btn-raised" ui-sref="admin.user.list" translate="global.button.delete">Delete</a>
 	    	</div>
   		</div>
 	</form>
