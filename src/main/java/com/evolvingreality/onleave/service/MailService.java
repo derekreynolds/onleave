@@ -1,6 +1,5 @@
 package com.evolvingreality.onleave.service;
 
-import com.evolvingreality.onleave.domain.User;
 import org.apache.commons.lang.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +11,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+
+import com.evolvingreality.onleave.model.User;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;

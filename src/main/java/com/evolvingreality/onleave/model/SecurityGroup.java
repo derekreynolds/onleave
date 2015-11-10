@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.evolvingreality.onleave.domain;
+package com.evolvingreality.onleave.model;
 
 import java.util.LinkedList;
 import java.util.List;

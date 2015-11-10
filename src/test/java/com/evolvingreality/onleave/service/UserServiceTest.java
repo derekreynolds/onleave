@@ -1,7 +1,7 @@
 package com.evolvingreality.onleave.service;
 
 import com.evolvingreality.onleave.Application;
-import com.evolvingreality.onleave.domain.User;
+import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.repository.UserRepository;
 import org.joda.time.DateTime;
 import com.evolvingreality.onleave.service.util.RandomUtil;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.*;
 /**
  * Test class for the UserResource REST controller.
  *
- * @see UserService
+ * @see UserServiceImpl
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

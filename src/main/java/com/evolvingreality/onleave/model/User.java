@@ -1,4 +1,4 @@
-package com.evolvingreality.onleave.domain;
+package com.evolvingreality.onleave.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

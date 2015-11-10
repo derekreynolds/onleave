@@ -1,9 +1,10 @@
 package com.evolvingreality.onleave.config.audit;
 
-import com.evolvingreality.onleave.domain.PersistentAuditEvent;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+
+import com.evolvingreality.onleave.model.PersistentAuditEvent;
 
 import java.util.*;
 

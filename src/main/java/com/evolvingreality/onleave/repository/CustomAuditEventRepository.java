@@ -1,7 +1,8 @@
 package com.evolvingreality.onleave.repository;
 
 import com.evolvingreality.onleave.config.audit.AuditEventConverter;
-import com.evolvingreality.onleave.domain.PersistentAuditEvent;
+import com.evolvingreality.onleave.model.PersistentAuditEvent;
+
 import org.joda.time.LocalDateTime;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.boot.actuate.audit.AuditEventRepository;

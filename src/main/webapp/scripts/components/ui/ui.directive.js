@@ -31,8 +31,7 @@ angular.module('ui')
             transclude: true,
             restrict: 'E',
             scope: {
-                entityName: '@',
-                action:'@'
+                entityName: '@'
             },
             templateUrl: '/scripts/components/ui/form.view.html'
         };

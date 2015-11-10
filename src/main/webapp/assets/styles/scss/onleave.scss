@@ -52,7 +52,7 @@ Browser Upgrade Prompt
     margin: 50px auto 0 auto;
     width: 300px;
     font-size: 18px;
-    font-weight: 200;
+    font-weight: $regular-font;
     line-height: 30px;
     background-color: #eee;
     border-radius: 6px;
@@ -207,3 +207,14 @@ Login Dialog
     color: $user-color;
 }
 
+.title {
+    color: $title-color;
+    font-weight: $bold-font;
+}
+
+.float {
+    position: absolute;
+    left: 90%;
+    bottom: 5%;
+    z-index: 100;
+}

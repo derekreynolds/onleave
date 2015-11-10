@@ -12,13 +12,13 @@ angular.module('onleaveApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/request/annual/annual.html',
+                        templateUrl: 'scripts/app/request/annual/annual.list.html',
                         controller: 'AnnualController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('request.annual');
+                        $translatePartialLoader.addPart('annual');
                         return $translate.refresh();
                     }]
                 }

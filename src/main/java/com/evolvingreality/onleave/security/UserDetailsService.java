@@ -1,7 +1,7 @@
 package com.evolvingreality.onleave.security;
 
-import com.evolvingreality.onleave.domain.SecurityGroupMember;
-import com.evolvingreality.onleave.domain.User;
+import com.evolvingreality.onleave.model.SecurityGroupMember;
+import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.repository.UserRepository;
 
 import org.slf4j.Logger;

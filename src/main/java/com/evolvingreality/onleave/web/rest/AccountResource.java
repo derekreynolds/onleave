@@ -1,10 +1,10 @@
 package com.evolvingreality.onleave.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.evolvingreality.onleave.domain.Authority;
-import com.evolvingreality.onleave.domain.SecurityGroupAuthority;
-import com.evolvingreality.onleave.domain.SecurityGroupMember;
-import com.evolvingreality.onleave.domain.User;
+import com.evolvingreality.onleave.model.Authority;
+import com.evolvingreality.onleave.model.SecurityGroupAuthority;
+import com.evolvingreality.onleave.model.SecurityGroupMember;
+import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.repository.UserRepository;
 import com.evolvingreality.onleave.security.SecurityUtils;
 import com.evolvingreality.onleave.service.MailService;

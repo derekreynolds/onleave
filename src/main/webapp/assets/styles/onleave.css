@@ -185,4 +185,14 @@ Login Dialog
 .user-type-user {
   color: #737ddc; }
 
+.title {
+  color: #0c7cd5;
+  font-weight: 600; }
+
+.float {
+  position: absolute;
+  left: 90%;
+  bottom: 5%;
+  z-index: 100; }
+
 /*# sourceMappingURL=onleave.css.map */

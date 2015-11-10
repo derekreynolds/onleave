@@ -1,4 +1,4 @@
-package com.evolvingreality.onleave.domain;
+package com.evolvingreality.onleave.model;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;

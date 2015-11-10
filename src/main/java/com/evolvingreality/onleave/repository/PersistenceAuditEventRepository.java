@@ -1,8 +1,9 @@
 package com.evolvingreality.onleave.repository;
 
-import com.evolvingreality.onleave.domain.PersistentAuditEvent;
 import org.joda.time.LocalDateTime;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.evolvingreality.onleave.model.PersistentAuditEvent;
 
 import java.util.List;
 

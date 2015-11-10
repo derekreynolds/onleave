@@ -29,7 +29,13 @@ angular.module('onleaveApp')
 		$scope.decorateUsers();
 
 	})
-	.controller('UserController', function($scope, $state) {
+	.controller('UserController', function($scope, $state, ManagerService) {
+
+		ManagerService.getSelectOptions(function(response){
+			$scope.managers = response;
+		}, function(err){
+			
+		});
 
 		$scope.user = {id: 1, email: 'jeff.hanneman@slayer.com', firstName: 'Jeff', lastName: 'Hanneman', roles: ['ROLE_SYS_ADMIN']};		
 

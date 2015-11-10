@@ -1,12 +1,13 @@
 package com.evolvingreality.onleave.web.rest;
 
 import com.evolvingreality.onleave.Application;
-import com.evolvingreality.onleave.domain.Authority;
-import com.evolvingreality.onleave.domain.User;
+import com.evolvingreality.onleave.model.Authority;
+import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.repository.AuthorityRepository;
 import com.evolvingreality.onleave.repository.UserRepository;
 import com.evolvingreality.onleave.security.AuthoritiesConstants;
 import com.evolvingreality.onleave.service.MailService;
+import com.evolvingreality.onleave.service.UserServiceImpl;
 import com.evolvingreality.onleave.service.UserService;
 import com.evolvingreality.onleave.web.rest.dto.UserDTO;
 import org.junit.Before;
@@ -42,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test class for the AccountResource REST controller.
  *
- * @see UserService
+ * @see UserServiceImpl
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
