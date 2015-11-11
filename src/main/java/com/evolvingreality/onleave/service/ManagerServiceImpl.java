@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.evolvingreality.onleave.domain.SelectOption;
+import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.repository.UserRepository;
 
 /**
@@ -24,7 +26,7 @@ import com.evolvingreality.onleave.repository.UserRepository;
 @Transactional(readOnly = true)
 public class ManagerServiceImpl implements ManagerService {
 
-	 private final Logger log = LoggerFactory.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	private UserRepository userRespository;
 	
@@ -41,6 +43,18 @@ public class ManagerServiceImpl implements ManagerService {
 		return userRespository.findAllByGroupMembers_SecurityGroupGroupNameIn(Collections.singleton("ROLE_MANAGER"))
 				.stream().map(user -> new SelectOption(String.valueOf(user.getId()), user.getFirstName() + " " + user.getLastName()))
 				.collect(Collectors.toList());
+	}
+	
+	@Override
+	public Page<User> getDirectReports(final User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<User> getManagers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
