@@ -6,6 +6,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ public class LeaveServiceImpl extends EntityServiceImpl<Leave> implements LeaveS
 
 	private LeaveRepository leaveRepository;
 	
+	@Autowired
 	public LeaveServiceImpl(final LeaveRepository leaveRepository) {
 		super(leaveRepository);
 		this.leaveRepository = leaveRepository;
@@ -43,7 +45,7 @@ public class LeaveServiceImpl extends EntityServiceImpl<Leave> implements LeaveS
 		leaveStatuses.add(LeaveStatus.APPROVED);
 		leaveStatuses.add(LeaveStatus.REQUESTED);
 		
-		return !leaveRepository.findByUserBetweenStartDateTimeAndLeaveTypeInAndLeaveStatusInOrderByStartDateDesc(user,
+		return !leaveRepository.findByUserAndStartDateTimeBetweenAndLeaveTypeInAndLeaveStatusInOrderByStartDateTimeDesc(user,
 				leave.getStartDateTime().toDate(), leave.getEndDateTime().toDate(), leaveTypes, 
 				leaveStatuses).isEmpty();
 	}
@@ -59,13 +61,13 @@ public class LeaveServiceImpl extends EntityServiceImpl<Leave> implements LeaveS
 		
 		Collection<LeaveStatus> leaveStatuses = EnumSet.<LeaveStatus>allOf(LeaveStatus.class);
 		
-		return leaveRepository.findByUserBetweenStartDateTimeAndLeaveTypeInAndLeaveStatusInOrderByStartDateDesc(user, 
+		return leaveRepository.findByUserAndStartDateTimeBetweenAndLeaveTypeInAndLeaveStatusInOrderByStartDateTimeDesc(user, 
 				startDateTime.toDate(), endDateTime.toDate(), leaveTypes, leaveStatuses, pageable);
 	}
 
 	@Override
 	public Page<Leave> getAnnualLeaveForUser(final User user, final Pageable pageable) {		
-		return leaveRepository.findByUserAndLeaveTypeInOrderByDesc(user, Collections.singletonList(LeaveType.ANNUAL), pageable);
+		return leaveRepository.findByUserAndLeaveTypeInOrderByStartDateTimeDesc(user, Collections.singletonList(LeaveType.ANNUAL), pageable);
 	}	
 	
 	

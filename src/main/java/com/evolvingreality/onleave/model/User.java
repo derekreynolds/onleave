@@ -26,7 +26,7 @@ import org.joda.time.DateTime;
  * A user.
  */
 @Entity
-@Table(name = "JHI_USER")
+@Table(name = "APP_USER")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends AbstractAuditingEntity implements Serializable {
 

@@ -3,7 +3,7 @@ package com.evolvingreality.onleave.web.rest;
 import com.evolvingreality.onleave.model.Entitlement;
 import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.security.AuthoritiesConstants;
-import com.evolvingreality.onleave.service.EntitlementServiceImpl;
+import com.evolvingreality.onleave.service.EntitlementService;
 import com.evolvingreality.onleave.service.UserService;
 import com.evolvingreality.onleave.web.propertyeditors.LocaleDateTimeEditor;
 import com.evolvingreality.onleave.web.rest.util.UriUtil;
@@ -29,12 +29,12 @@ import javax.annotation.security.RolesAllowed;
 @RequestMapping("/api/v1.0")
 public class EntitlementResource {
 
-    private EntitlementServiceImpl entitlementService;
+    private EntitlementService entitlementService;
     
     private UserService userService;
     
     @Autowired
-    public EntitlementResource(final EntitlementServiceImpl entitlementService, final UserService userService) {
+    public EntitlementResource(final EntitlementService entitlementService, final UserService userService) {
     	this.entitlementService = entitlementService;
     	this.userService = userService;
     }

@@ -19,14 +19,14 @@ import com.evolvingreality.onleave.model.User;
  */
 public interface LeaveRepository extends JpaRepository<Leave, Long> {
 	
-	Page<Leave> findByUserBetweenStartDateTimeAndLeaveTypeInAndLeaveStatusInOrderByStartDateDesc(final User user, 
+	Page<Leave> findByUserAndStartDateTimeBetweenAndLeaveTypeInAndLeaveStatusInOrderByStartDateTimeDesc(final User user, 
 			final Date startDate, final Date endDate, final Collection<LeaveType> leaveTypes, 
 			final Collection<LeaveStatus> leaveStatuses, final Pageable pageable);
 	
-	List<Leave> findByUserBetweenStartDateTimeAndLeaveTypeInAndLeaveStatusInOrderByStartDateDesc(final User user, 
+	List<Leave> findByUserAndStartDateTimeBetweenAndLeaveTypeInAndLeaveStatusInOrderByStartDateTimeDesc(final User user, 
 			final Date startDate, final Date endDate, final Collection<LeaveType> leaveTypes, 
 			final Collection<LeaveStatus> leaveStatuses);
 	
-	Page<Leave> findByUserAndLeaveTypeInOrderByDesc(final User user, final Collection<LeaveType> leaveTypes, final Pageable pageable);
+	Page<Leave> findByUserAndLeaveTypeInOrderByStartDateTimeDesc(final User user, final Collection<LeaveType> leaveTypes, final Pageable pageable);
 	
 }
