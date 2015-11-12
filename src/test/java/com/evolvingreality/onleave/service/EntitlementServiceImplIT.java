@@ -40,7 +40,7 @@ public class EntitlementServiceImplIT {
 	@Test
 	public void testSaveSuccess() {
 
-		User user = userService.createUserInformation("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
+		User user = userService.createUserInformation("johndoe", "johndoe", "John", "Doe", "john.doe@localhost");
 		
 		userService.save(user);	
 		
@@ -63,7 +63,7 @@ public class EntitlementServiceImplIT {
 	@Test
 	public void testHasUserEntitlementForYearSuccess() {
 		
-		User user = userService.createUserInformation("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
+		User user = userService.createUserInformation("johndoe", "johndoe", "John", "Doe", "john.doe@localhost");
 		
 		userService.save(user);	
 		
@@ -82,7 +82,7 @@ public class EntitlementServiceImplIT {
 	@Test
 	public void testHasUserEntitlementForYearFailure() {
 		
-		User user = userService.createUserInformation("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
+		User user = userService.createUserInformation("johndoe", "johndoe", "John", "Doe", "john.doe@localhost");
 		
 		userService.save(user);			
 		

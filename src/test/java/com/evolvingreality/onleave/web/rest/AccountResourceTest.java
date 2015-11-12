@@ -1,9 +1,7 @@
 package com.evolvingreality.onleave.web.rest;
 
 import com.evolvingreality.onleave.Application;
-import com.evolvingreality.onleave.model.Authority;
 import com.evolvingreality.onleave.model.User;
-import com.evolvingreality.onleave.repository.AuthorityRepository;
 import com.evolvingreality.onleave.repository.UserRepository;
 import com.evolvingreality.onleave.security.AuthoritiesConstants;
 import com.evolvingreality.onleave.service.MailService;
@@ -27,7 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.Arrays;
-import java.util.HashSet;
+
 import java.util.Optional;
 import java.util.Set;
 
@@ -53,9 +51,6 @@ public class AccountResourceTest {
 
     @Inject
     private UserRepository userRepository;
-
-    @Inject
-    private AuthorityRepository authorityRepository;
 
     @Inject
     private UserService userService;
@@ -111,16 +106,12 @@ public class AccountResourceTest {
 
     @Test
     public void testGetExistingAccount() throws Exception {
-        Set<Authority> authorities = new HashSet<>();
-        Authority authority = new Authority();
-        authority.setName(AuthoritiesConstants.ADMIN);
-        authorities.add(authority);
-
+    	
         User user = new User();
         user.setFirstName("john");
         user.setLastName("doe");
         user.setEmail("john.doe@jhipter.com");
-        user.setAuthorities(authorities);
+        
         when(mockUserService.getUserWithAuthorities()).thenReturn(user);
 
         restUserMockMvc.perform(get("/api/account")
@@ -299,7 +290,5 @@ public class AccountResourceTest {
 
         Optional<User> userDup = userRepository.findOneByEmail("badguy");
         assertThat(userDup.isPresent()).isTrue();
-        assertThat(userDup.get().getAuthorities()).hasSize(1)
-            .containsExactly(authorityRepository.findOne(AuthoritiesConstants.USER));
     }
 }

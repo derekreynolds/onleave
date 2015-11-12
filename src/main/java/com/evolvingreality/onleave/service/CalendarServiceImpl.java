@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.evolvingreality.onleave.domain.Day;
@@ -21,8 +23,12 @@ import com.evolvingreality.onleave.domain.Year;
 @Service
 public class CalendarServiceImpl implements CalendarService {
 
+	protected final Logger log = LoggerFactory.getLogger(getClass());
+	
 	@Override
-	public Year get(Integer yearInt) {		
+	public Year get(Integer yearInt) {	
+		
+		log.debug("Entering with {}", yearInt);
 		
 		LocalDate date = LocalDate.of(yearInt, java.time.Month.JANUARY, 1);
 
@@ -39,6 +45,8 @@ public class CalendarServiceImpl implements CalendarService {
 	
 	private Month create(final LocalDate year, final LocalDate localMonth) {
 		
+		log.debug("Entering with {}, {}", year, localMonth);
+		
 		Month month = new Month();		
 				
 		month.setMonth(localMonth.getMonth());
@@ -53,17 +61,23 @@ public class CalendarServiceImpl implements CalendarService {
 	
 	private Day create(final LocalDate localDay) {
 		
+		log.debug("Entering with {}", localDay);
+		
 		return new Day(localDay.getDayOfWeek(), localDay.getDayOfMonth(), localDay.getDayOfYear());
 		
 	}
 	
 	private void createWeeks(final Month month) {
 				
+		log.debug("Entering with {}", month);
+		
 		month.setWeeks(createWeeks(padMonthEnd(padMonthStart(month.getDays()))));
 				
 	}
 	
 	private List<Day> padMonthStart(final List<Day> days) {
+		
+		log.debug("Entering with {}", days);
 		
 		List<Day> paddedDays = new ArrayList<>(days);
 				
@@ -80,6 +94,8 @@ public class CalendarServiceImpl implements CalendarService {
 	
 	private List<Day> padMonthEnd(final List<Day> days) {
 		
+		log.debug("Entering with {}", days);
+		
 		List<Day> paddedDays = new ArrayList<>(days);
 		
 		for(int i = days.size(); i < 42; i++) {
@@ -91,6 +107,8 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 	
 	private Map<Integer, List<Day>> createWeeks(List<Day> days) {
+		
+		log.debug("Entering with {}", days);
 		
 		Map<Integer, List<Day>> weeks = new HashMap<>();
 		

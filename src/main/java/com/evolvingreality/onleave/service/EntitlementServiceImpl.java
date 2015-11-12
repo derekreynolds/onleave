@@ -1,24 +1,36 @@
 package com.evolvingreality.onleave.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.evolvingreality.onleave.model.Entitlement;
 import com.evolvingreality.onleave.model.User;
+import com.evolvingreality.onleave.repository.EntitlementRepository;
 
 /**
- * This services provides operation for the {@link Entitlement}. Each {@link User} has
- * an {@link Entitlement} for each year. It holds the number of days off they are entitled to.  
- *  
  * @author Derek Reynolds
  *
  */
-public interface EntitlementServiceImpl extends EntityService<Entitlement> {
+@Service
+@Transactional(readOnly = true)
+public class EntitlementServiceImpl extends EntityServiceImpl<Entitlement> implements EntitlementService {
 
-	/**
-	 * Checks to see if an {@link Entitlement} exists for the {@link User} for a 
-	 * particular year.
-	 * @param user - the {@link User} that 
-	 * @param year - the year we are checking to see if an {@link Entitlement} exists for.
-	 * @return true if the {@link Entitlement} exists.
-	 */
-	Boolean hasUserEntitlementForYear(final User user, final Integer year);
+	private EntitlementRepository entitlementRepository;
+	
+	@Autowired
+	public EntitlementServiceImpl(final EntitlementRepository entitlementRepository) {
+		super(entitlementRepository);
+		this.entitlementRepository = entitlementRepository;
+	}
 
+
+	@Override
+	public Boolean hasUserEntitlementForYear(final User user, final Integer year) {
+		
+		log.debug("Check to see if user {} has entitlement for year {}", user.getId(), year);
+		
+		return entitlementRepository.findByUserAndYear(user, year).isPresent();
+	}	
+	
 }

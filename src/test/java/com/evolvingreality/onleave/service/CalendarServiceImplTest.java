@@ -40,12 +40,12 @@ public class CalendarServiceImplTest {
 		
 		Month jan = year.getMonths().get(0);
 		
-		assertThat(jan.getMonth()).isEqualByComparingTo(java.time.Month.JANUARY);
+		assertThat(jan.getMonth()).isEqualTo(java.time.Month.JANUARY);
 		assertThat(jan.getDays()).hasSize(31);
 		
 		Month dec = year.getMonths().get(11);
 		
-		assertThat(dec.getMonth()).isEqualByComparingTo(java.time.Month.DECEMBER);
+		assertThat(dec.getMonth()).isEqualTo(java.time.Month.DECEMBER);
 		assertThat(dec.getDays()).hasSize(31);
 		
 	}
@@ -63,7 +63,7 @@ public class CalendarServiceImplTest {
 		
 		Month feb = year.getMonths().get(1);
 		
-		assertThat(feb.getMonth()).isEqualByComparingTo(java.time.Month.FEBRUARY);
+		assertThat(feb.getMonth()).isEqualTo(java.time.Month.FEBRUARY);
 		assertThat(feb.getDays()).hasSize(29);
 		
 	}

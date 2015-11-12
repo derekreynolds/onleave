@@ -19,7 +19,7 @@ import com.evolvingreality.onleave.model.AbstractAuditingEntity;
  */
 public class EntityServiceImpl<T extends AbstractAuditingEntity> implements EntityService<T> {
 	
-	protected final Logger log = LoggerFactory.getLogger(getClass().getName());
+	protected final Logger log = LoggerFactory.getLogger(getClass());
 	
 	protected JpaRepository<T, Long> jpaRepository;
 	

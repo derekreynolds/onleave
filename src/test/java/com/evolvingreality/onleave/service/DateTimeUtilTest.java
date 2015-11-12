@@ -1,9 +1,11 @@
-package com.evolvingreality.onleave.service.util;
+package com.evolvingreality.onleave.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
+
+import com.evolvingreality.onleave.service.util.DateTimeUtil;
 
 public class DateTimeUtilTest {
 

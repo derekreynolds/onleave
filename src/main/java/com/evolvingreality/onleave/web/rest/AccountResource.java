@@ -1,7 +1,7 @@
 package com.evolvingreality.onleave.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.evolvingreality.onleave.model.Authority;
+
 import com.evolvingreality.onleave.model.SecurityGroupAuthority;
 import com.evolvingreality.onleave.model.SecurityGroupMember;
 import com.evolvingreality.onleave.model.User;

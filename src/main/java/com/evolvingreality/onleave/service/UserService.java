@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.evolvingreality.onleave.model.User;
 
-public interface UserService {
+public interface UserService extends EntityService<User> {
 
 	Optional<User> activateRegistration(String key);
 

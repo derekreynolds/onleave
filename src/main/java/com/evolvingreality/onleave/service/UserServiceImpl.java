@@ -1,8 +1,6 @@
 package com.evolvingreality.onleave.service;
 
-import com.evolvingreality.onleave.model.Authority;
 import com.evolvingreality.onleave.model.User;
-import com.evolvingreality.onleave.repository.AuthorityRepository;
 import com.evolvingreality.onleave.repository.UserRepository;
 import com.evolvingreality.onleave.security.SecurityUtils;
 import com.evolvingreality.onleave.service.util.RandomUtil;
@@ -10,6 +8,8 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,18 +26,20 @@ import java.util.Set;
  */
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends EntityServiceImpl<User> implements UserService {
 
-    private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @Inject
     private PasswordEncoder passwordEncoder;
 
-    @Inject
     private UserRepository userRepository;
-
-    @Inject
-    private AuthorityRepository authorityRepository;
+   
+    @Autowired
+    public UserServiceImpl(final UserRepository userRespository, final PasswordEncoder passwordEncoder) {
+		super(userRespository);
+		this.passwordEncoder = passwordEncoder;		
+	}
+    
 
     /* (non-Javadoc)
 	 * @see com.evolvingreality.onleave.service.UserServiceI#activateRegistration(java.lang.String)
@@ -101,8 +103,7 @@ public class UserServiceImpl implements UserService {
                                       String langKey) {
 
         User newUser = new User();
-        Authority authority = authorityRepository.findOne("ROLE_USER");
-        Set<Authority> authorities = new HashSet<>();
+
         String encryptedPassword = passwordEncoder.encode(password);
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
@@ -114,7 +115,7 @@ public class UserServiceImpl implements UserService {
         newUser.setActivated(false);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
-        authorities.add(authority);
+
         //newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
