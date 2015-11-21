@@ -16,7 +16,7 @@ import com.evolvingreality.onleave.repository.EntitlementRepository;
 @Transactional(readOnly = true)
 public class EntitlementServiceImpl extends EntityServiceImpl<Entitlement> implements EntitlementService {
 
-	private EntitlementRepository entitlementRepository;
+	private final EntitlementRepository entitlementRepository;
 	
 	@Autowired
 	public EntitlementServiceImpl(final EntitlementRepository entitlementRepository) {

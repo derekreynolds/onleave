@@ -154,11 +154,11 @@ Login Dialog
   min-width: 300px;
   padding: 14px 14px 0;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.8); }
+  background-color: white; }
   #login-dp .help-block {
     font-size: 12px; }
   #login-dp .bottom {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: white;
     border-top: 1px solid #ddd;
     clear: both;
     padding: 14px; }
@@ -192,7 +192,7 @@ Login Dialog
 .float {
   position: absolute;
   left: 90%;
-  bottom: 5%;
+  bottom: -10%;
   z-index: 100; }
 
 /*# sourceMappingURL=onleave.css.map */

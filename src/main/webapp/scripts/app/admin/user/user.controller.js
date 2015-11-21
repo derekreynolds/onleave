@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('onleaveApp')
-	.controller('UserListController', function($scope, $state) {
+	.controller('UserListController', function($scope, $state, users) {
 
-		$scope.users = {content: [{id: 1, email: 'jeff.hanneman@slayer.com', firstName: 'Jeff', lastName: 'Hanneman', roles: ['ROLE_SYS_ADMIN']}, 
-					{id: 2, email: 'dave.lombardo@slayer.com',firstName: 'Dave', lastName: 'Lombardo', roles: ['ROLE_ADMIN']}, 
-					{id: 3, email: 'kerry.king@slayer.com',firstName: 'Kerry', lastName: 'King', roles: ['ROLE_MANAGER']},
-					{id: 4, email: 'tom.arraya@slayer.com',firstName: 'Tom', lastName: 'Arraya', roles: ['ROLE_USER']}]};		
+		$scope.users = users;
 
-		$scope.show = function() {
-			$state.go('admin.user.show', {id: 1});
+		$scope.show = function(id) {
+			$state.go('admin.user.show', {id: id});
+		};
+
+		$scope.create = function() {
+			$state.go('admin.user.create');
 		};
 
 		$scope.decorateUsers = function() {
+
 			_.each($scope.users.content, function(user) {				
 				if(_.includes(user.roles, 'ROLE_SYS_ADMIN')) {
 					user.roleCssClass = 'user-type-system-admin';
@@ -29,16 +31,14 @@ angular.module('onleaveApp')
 		$scope.decorateUsers();
 
 	})
-	.controller('UserController', function($scope, $state, ManagerService) {
+	.controller('UserCreateController', function($scope, $state, managers, securityGroups) {
 
-		ManagerService.getSelectOptions(function(response){
-			$scope.managers = response;
-		}, function(err){
-			
-		});
-
-		$scope.user = {id: 1, email: 'jeff.hanneman@slayer.com', firstName: 'Jeff', lastName: 'Hanneman', roles: ['ROLE_SYS_ADMIN']};		
+		$scope.managers = managers;
+		$scope.securityGroups = securityGroups;
+		$scope.user = {};		
 
 
 	})
-	;
+	.controller('UserShowController', function($scope, $stateParams, UserService){
+		$scope.user = UserService.get({id: $stateParams.id});
+	});

@@ -28,7 +28,7 @@ public class ManagerServiceImpl implements ManagerService {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	private UserRepository userRespository;
+	private final UserRepository userRespository;
 	
 	@Autowired
 	public ManagerServiceImpl(final UserRepository userRespository) {
@@ -40,7 +40,7 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		log.debug("Entering");
 		
-		return userRespository.findAllByGroupMembers_SecurityGroupGroupNameIn(Collections.singleton("ROLE_MANAGER"))
+		return userRespository.findAllByGroupMembers_SecurityGroupGroupNameIn(Collections.singleton("MANAGER"))
 				.stream().map(user -> new SelectOption(String.valueOf(user.getId()), user.getFirstName() + " " + user.getLastName()))
 				.collect(Collectors.toList());
 	}

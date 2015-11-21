@@ -12,15 +12,19 @@
 	    	</thead>
 
 	    	<tbody>
-	    		<tr ng-repeat="user in users.content track by user.id" ng-click="show()">	
+	    		<tr ng-repeat="user in users.content track by user.id" ng-click="show(user.id)">	
 	    			<td><i class="fa fa-user" ng-class="user.roleCssClass"></i></td> 
 	    			<td>{{user.firstName}}</td>
 	    			<td>{{user.lastName}}</td>     			
 	    			<td>{{user.email}} </td>   			  			
-	    		</tr>
-	    		
+	    		</tr>    		
 	    	</tbody>
 	  	</table>
-		<div class="float"><button class="btn btn-fab btn-raised btn-material-blue"><i class="mdi-content-add"></i></button></div>
+		
+	</div>
+	<div class="row">
+		<div class="float">
+			<button class="btn btn-fab btn-raised btn-material-blue" ng-click="create()"><i class="mdi-content-add"></i></button>
+		</div>
 	</div>
 </form-view>

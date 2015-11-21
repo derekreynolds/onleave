@@ -23,11 +23,14 @@ angular.module('onleaveApp')
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('user');
                         return $translate.refresh();
+                    }],
+                    users: ['UserService', function(UserService){
+                        return UserService.query();
                     }]
                 }
             })
             .state('admin.user.show', {                
-                url: '/:id',
+                url: '/show/:id',
                 data: {
                     roles: [], 
                     pageTitle: 'user.title'
@@ -35,13 +38,42 @@ angular.module('onleaveApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/admin/user/user.show.html',
-                        controller: 'UserController'
+                        controller: 'UserShowController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('user');
                         return $translate.refresh();
+                    }],
+                    managers: ['ManagerService', function(ManagerService){
+                        return ManagerService.getSelectOptions();
+                    }]
+                    
+                }
+            })
+            .state('admin.user.create', {                
+                url: '/create',
+                data: {
+                    roles: [], 
+                    pageTitle: 'user.title'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/admin/user/user.create.html?h=1',
+                        controller: 'UserCreateController'
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('user');
+                        return $translate.refresh();
+                    }],
+                    managers: ['ManagerService', function(ManagerService){
+                        return ManagerService.getSelectOptions();
+                    }],
+                    securityGroups: ['SecurityGroupService', function(SecurityGroupService){
+                        return SecurityGroupService.getSelectOptions();
                     }]
                 }
             })

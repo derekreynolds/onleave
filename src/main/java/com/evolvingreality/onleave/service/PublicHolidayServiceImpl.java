@@ -18,7 +18,7 @@ import com.evolvingreality.onleave.repository.PublicHolidayRepository;
 @Transactional(readOnly = true)
 public class PublicHolidayServiceImpl extends EntityServiceImpl<PublicHoliday> implements PublicHolidayService {
 			
-	private PublicHolidayRepository publicHolidayRepository;
+	private final PublicHolidayRepository publicHolidayRepository;
 	
 	@Autowired
 	public PublicHolidayServiceImpl(final PublicHolidayRepository publicHolidayRepository) {

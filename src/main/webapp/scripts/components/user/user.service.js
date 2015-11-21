@@ -1,15 +1,10 @@
 'use strict';
 
 angular.module('onleaveApp')
-    .factory('User', function ($resource) {
-        return $resource('api/users/:login', {}, {
-                'query': {method: 'GET', isArray: true},
-                'get': {
-                    method: 'GET',
-                    transformResponse: function (data) {
-                        data = angular.fromJson(data);
-                        return data;
-                    }
-                }
+    .factory('UserService', function ($resource) {
+        return $resource('api/user/:id', {}, {
+                'query': {method: 'GET', isArray: false},
+                'get': {method: 'GET'}
+                
             });
         });

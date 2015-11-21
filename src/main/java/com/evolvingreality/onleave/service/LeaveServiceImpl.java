@@ -27,7 +27,7 @@ import com.evolvingreality.onleave.service.util.DateTimeUtil;
 @Transactional(readOnly = true)
 public class LeaveServiceImpl extends EntityServiceImpl<Leave> implements LeaveService {
 
-	private LeaveRepository leaveRepository;
+	private final LeaveRepository leaveRepository;
 	
 	@Autowired
 	public LeaveServiceImpl(final LeaveRepository leaveRepository) {
