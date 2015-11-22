@@ -31,12 +31,24 @@ angular.module('onleaveApp')
 		$scope.decorateUsers();
 
 	})
-	.controller('UserCreateController', function($scope, $state, managers, securityGroups) {
+	.controller('UserCreateController', function($scope, $state, UserService, managers, securityGroups) {
 
 		$scope.managers = managers;
 		$scope.securityGroups = securityGroups;
 		$scope.user = {};		
 
+		$scope.save = function() {
+
+			UserService.save($scope.user, function(response) {
+				$scope.$emit('event:resource.create', {'title': 'user.messages.resource.create.success.title', 'text': 'user.messages.resource.create.success.message'});
+				$state.go('admin.user.list');
+			},
+			function(error) {
+				debugger
+				$scope.$emit('event:resource.error', {'title': 'user.messages.resource.create.error.title', 'text': 'user.messages.resource.create.error.message'});
+			});
+
+		}
 
 	})
 	.controller('UserShowController', function($scope, $stateParams, UserService){

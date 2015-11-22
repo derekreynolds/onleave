@@ -12,9 +12,6 @@ public class UserDTO {
     public static final int PASSWORD_MIN_LENGTH = 5;
     public static final int PASSWORD_MAX_LENGTH = 100;
 
-    @NotNull
-    @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
-    private String password;
 
     @NotNull
     @Size(max = 50)
@@ -37,10 +34,9 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String password, String firstName, String lastName, String email, String langKey,
+    public UserDTO(String firstName, String lastName, String email, String langKey,
                    List<String> roles) {
 
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -48,9 +44,6 @@ public class UserDTO {
         this.roles = roles;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -75,7 +68,6 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-        ", password='" + password + '\'' +
         ", firstName='" + firstName + '\'' +
         ", lastName='" + lastName + '\'' +
         ", email='" + email + '\'' +

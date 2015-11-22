@@ -3,7 +3,7 @@
 angular.module('onleaveApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 
     'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll', 'ui'])
 
-    .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
+    .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ToasterService, ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
@@ -18,7 +18,7 @@ angular.module('onleaveApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
             Language.getCurrent().then(function (language) {
                 $translate.use(language);
             });
-            
+            ToasterService.initialise();
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -122,5 +122,7 @@ angular.module('onleaveApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage();
         tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
+
+
         
     });

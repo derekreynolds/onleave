@@ -44,33 +44,6 @@ public class AccountResource {
     @Inject
     private MailService mailService;
 
-    /**
-     * POST  /register -> register the user.
-     */
-    @RequestMapping(value = "/register",
-            method = RequestMethod.POST,
-            produces = MediaType.TEXT_PLAIN_VALUE)
-    @Timed
-    public ResponseEntity<?> registerAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
-        return userRepository.findOneByEmail(userDTO.getEmail())
-            .map(user -> new ResponseEntity<>("login already in use", HttpStatus.BAD_REQUEST))
-            .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
-                .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
-                .orElseGet(() -> {
-                    User user = userService.createUserInformation(userDTO.getPassword(),
-                    userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail().toLowerCase(),
-                    userDTO.getLangKey());
-                    String baseUrl = request.getScheme() + // "http"
-                    "://" +                                // "://"
-                    request.getServerName() +              // "myhost"
-                    ":" +                                  // ":"
-                    request.getServerPort();               // "80"
-
-                    mailService.sendActivationEmail(user, baseUrl);
-                    return new ResponseEntity<>(HttpStatus.CREATED);
-                })
-        );
-    }
 
     /**
      * GET  /activate -> activate the registered user.
@@ -120,8 +93,7 @@ public class AccountResource {
             	}
             	
                 return new ResponseEntity<>(
-                        new UserDTO(
-                            null,
+                        new UserDTO(                            
                             user.getFirstName(),
                             user.getLastName(),
                             user.getEmail(),
@@ -133,24 +105,6 @@ public class AccountResource {
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
-    /**
-     * POST  /account -> update the current user information.
-     */
-    @RequestMapping(value = "/account",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<String> saveAccount(@RequestBody UserDTO userDTO) {
-        return userRepository
-            .findOneByEmail(userDTO.getEmail())
-            .filter(u -> u.getEmail().equals(SecurityUtils.getCurrentLogin()))
-            .map(u -> {
-                userService.updateUserInformation(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-                    userDTO.getLangKey());
-                return new ResponseEntity<String>(HttpStatus.OK);
-            })
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
-    }
 
     /**
      * POST  /change_password -> changes the current user's password
@@ -199,6 +153,6 @@ public class AccountResource {
     }
 
     private boolean checkPasswordLength(String password) {
-      return (!StringUtils.isEmpty(password) && password.length() >= UserDTO.PASSWORD_MIN_LENGTH && password.length() <= UserDTO.PASSWORD_MAX_LENGTH);
+      return (!StringUtils.isEmpty(password) && password.length() >= 8 && password.length() <= 8);
     }
 }

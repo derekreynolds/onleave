@@ -21,8 +21,7 @@ angular.module('onleaveApp')
                 username: $scope.username,
                 password: $scope.password,
                 rememberMe: $scope.rememberMe
-            }).then(function () { 
-            debugger   
+            }).then(function () {               
                 $('a#login-dropdown').click();      	
                 $scope.authenticationError = false;
                 if ($rootScope.previousStateName === 'register') {

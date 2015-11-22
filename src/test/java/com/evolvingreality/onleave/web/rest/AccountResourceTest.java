@@ -138,7 +138,6 @@ public class AccountResourceTest {
     @Transactional
     public void testRegisterValid() throws Exception {
         UserDTO u = new UserDTO(
-            "password",             // password
             "Joe",                  // firstName
             "Shmoe",                // lastName
             "joe@example.com",      // e-mail
@@ -160,7 +159,6 @@ public class AccountResourceTest {
     @Transactional
     public void testRegisterInvalidLogin() throws Exception {
         UserDTO u = new UserDTO(
-            "password",             // password
             "Funky",                // firstName
             "One",                  // lastName
             "funky@example.com",    // e-mail
@@ -182,7 +180,6 @@ public class AccountResourceTest {
     @Transactional
     public void testRegisterInvalidEmail() throws Exception {
         UserDTO u = new UserDTO(
-            "password",         // password
             "Bob",              // firstName
             "Green",            // lastName
             "invalid",          // e-mail <-- invalid
@@ -200,81 +197,11 @@ public class AccountResourceTest {
         assertThat(user.isPresent()).isFalse();
     }
 
-    @Test
-    @Transactional
-    public void testRegisterDuplicateLogin() throws Exception {
-        // Good
-        UserDTO u = new UserDTO(
-            "password",             // password
-            "Alice",                // firstName
-            "Something",            // lastName
-            "alice@example.com",    // e-mail
-            "en",                   // langKey
-            Arrays.asList(AuthoritiesConstants.USER)
-        );
-
-        // Duplicate login, different e-mail
-        UserDTO dup = new UserDTO(u.getPassword(), u.getEmail(), u.getLastName(),
-            "alicejr@example.com", u.getLangKey(), u.getRoles());
-
-        // Good user
-        restMvc.perform(
-            post("/api/register")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(u)))
-            .andExpect(status().isCreated());
-
-        // Duplicate login
-        restMvc.perform(
-            post("/api/register")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(dup)))
-            .andExpect(status().is4xxClientError());
-
-        Optional<User> userDup = userRepository.findOneByEmail("alicejr@example.com");
-        assertThat(userDup.isPresent()).isFalse();
-    }
-
-    @Test
-    @Transactional
-    public void testRegisterDuplicateEmail() throws Exception {
-        // Good
-        UserDTO u = new UserDTO(
-            "password",             // password
-            "John",                 // firstName
-            "Doe",                  // lastName
-            "john@example.com",     // e-mail
-            "en",                   // langKey
-            Arrays.asList(AuthoritiesConstants.USER)
-        );
-
-        // Duplicate e-mail, different login
-        UserDTO dup = new UserDTO(u.getPassword(), u.getEmail(), u.getLastName(),
-            u.getEmail(), u.getLangKey(), u.getRoles());
-
-        // Good user
-        restMvc.perform(
-            post("/api/register")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(u)))
-            .andExpect(status().isCreated());
-
-        // Duplicate e-mail
-        restMvc.perform(
-            post("/api/register")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(dup)))
-            .andExpect(status().is4xxClientError());
-
-        Optional<User> userDup = userRepository.findOneByEmail("johnjr");
-        assertThat(userDup.isPresent()).isFalse();
-    }
 
     @Test
     @Transactional
     public void testRegisterAdminIsIgnored() throws Exception {
         UserDTO u = new UserDTO(
-            "password",             // password
             "Bad",                  // firstName
             "Guy",                  // lastName
             "badguy@example.com",   // e-mail

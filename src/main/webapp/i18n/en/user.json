@@ -8,15 +8,29 @@
             "firstName.placeholder": "Enter first name",
             "lastName": "Last Name",
             "lastName.placeholder": "Enter last name",
-            "manager": "Manager"
+            "manager": "Manager",
+            "securityGroup": "Security Group"
         },
         "messages": {
             "error": {
                 "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+            },
+            "resource": {
+                "create": {
+                    "success": {
+                        "title": "Create User",
+                        "message": "User created successfully."
+                    },
+                    "error": {
+                        "title": "Create User",
+                        "message": "Error creating user."
+                    }
+                }
             }
         },
         "password" : {
             "forgot": "Did you forget your password?"
         }
+
     }
 }
