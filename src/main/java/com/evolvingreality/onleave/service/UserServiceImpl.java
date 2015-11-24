@@ -1,9 +1,13 @@
 package com.evolvingreality.onleave.service;
 
+import com.evolvingreality.onleave.model.SecurityGroup;
+import com.evolvingreality.onleave.model.SecurityGroupMember;
 import com.evolvingreality.onleave.model.User;
 import com.evolvingreality.onleave.repository.UserRepository;
 import com.evolvingreality.onleave.security.SecurityUtils;
 import com.evolvingreality.onleave.service.util.RandomUtil;
+import com.evolvingreality.onleave.web.rest.dto.UserDTO;
+
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +31,16 @@ public class UserServiceImpl extends EntityServiceImpl<User> implements UserServ
 
     private final UserRepository userRepository;
 	
+    private final SecurityGroupService securityGroupService;
+    
     private final PasswordEncoder passwordEncoder;
 
    
     @Autowired
-    public UserServiceImpl(final UserRepository userRepository, final PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(final UserRepository userRepository, final SecurityGroupService securityGroupService, final PasswordEncoder passwordEncoder) {
 		super(userRepository);
 		this.userRepository = userRepository;
+		this.securityGroupService = securityGroupService;
 		this.passwordEncoder = passwordEncoder;		
 	}
     
@@ -93,28 +100,37 @@ public class UserServiceImpl extends EntityServiceImpl<User> implements UserServ
     }
 
     /* (non-Javadoc)
-	 * @see com.evolvingreality.onleave.service.UserServiceI#createUserInformation(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 * @see com.evolvingreality.onleave.service.UserServiceI#create(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
     @Override
-	public User createUserInformation(String password, String firstName, String lastName, String email,
-                                      String langKey) {
+    @Transactional(readOnly = false)
+	public User create(final UserDTO userDto) {
 
         User newUser = new User();
 
-        String encryptedPassword = passwordEncoder.encode(password);
+        String encryptedPassword = passwordEncoder.encode(userDto.getPassword());
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setEmail(email);
-        newUser.setLangKey(langKey);
+        newUser.setFirstName(userDto.getFirstName());
+        newUser.setLastName(userDto.getLastName());
+        newUser.setEmail(userDto.getEmail());
+        newUser.setLangKey(userDto.getLangKey());
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
 
-        //newUser.setAuthorities(authorities);
+        SecurityGroup securityGroup = securityGroupService.get(userDto.getSecurityGroupId()).get();
+        
+        SecurityGroupMember securityGroupMember = new SecurityGroupMember();
+        
+        securityGroupMember.setUser(newUser);
+        securityGroupMember.setSecurityGroup(securityGroup);
+        		
+        newUser.getGroupMembers().add(securityGroupMember);       
+        
         userRepository.save(newUser);
+        
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }

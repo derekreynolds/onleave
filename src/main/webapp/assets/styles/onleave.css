@@ -187,7 +187,8 @@ Login Dialog
 
 .title {
   color: #0c7cd5;
-  font-weight: 600; }
+  font-weight: 600;
+  margin-bottom: 40px; }
 
 .float {
   position: absolute;

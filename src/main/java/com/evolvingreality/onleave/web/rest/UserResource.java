@@ -85,9 +85,7 @@ public class UserResource {
                 .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
                     .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
                     .orElseGet(() -> {
-                        User user = null;//userService.createUserInformation(userDTO.getPassword(),
-                        //userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail().toLowerCase(),
-                        //userDTO.getLangKey());
+                        User user = userService.create(userDTO);
                         String baseUrl = request.getScheme() + // "http"
                         "://" +                                // "://"
                         request.getServerName() +              // "myhost"

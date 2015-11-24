@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.evolvingreality.onleave.model.User;
+import com.evolvingreality.onleave.web.rest.dto.UserDTO;
 
 public interface UserService extends EntityService<User> {
 
@@ -15,7 +16,7 @@ public interface UserService extends EntityService<User> {
 
 	Optional<User> requestPasswordReset(String mail);
 
-	User createUserInformation(String password, String firstName, String lastName, String email, String langKey);
+	User create(final UserDTO userDto);
 
 	void updateUserInformation(String firstName, String lastName, String email, String langKey);
 

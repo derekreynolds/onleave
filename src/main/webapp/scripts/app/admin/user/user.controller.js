@@ -31,20 +31,35 @@ angular.module('onleaveApp')
 		$scope.decorateUsers();
 
 	})
-	.controller('UserCreateController', function($scope, $state, UserService, managers, securityGroups) {
+	.controller('UserCreateController', function($scope, $state, SelectOptionService, UserService, managers, securityGroups) {
 
-		$scope.managers = managers;
-		$scope.securityGroups = securityGroups;
-		$scope.user = {};		
+		$scope.user = {};
+
+		managers.$promise.then(function(response) {
+			$scope.managers = response;
+			$scope.user.manager = response[0];
+		});
+
+		securityGroups.$promise.then(function(response) {
+			$scope.securityGroups = response;
+			$scope.user.securityGroup = response[0];
+		});
+				
 
 		$scope.save = function() {
 
-			UserService.save($scope.user, function(response) {
+			var cloneUser = _.clone($scope.user, true);
+
+			delete cloneUser.confirmPassword;
+
+			SelectOptionService.setOptionId(cloneUser, 'manager');
+			SelectOptionService.setOptionId(cloneUser, 'securityGroup');
+
+			UserService.save(cloneUser, function(response) {
 				$scope.$emit('event:resource.create', {'title': 'user.messages.resource.create.success.title', 'text': 'user.messages.resource.create.success.message'});
 				$state.go('admin.user.list');
 			},
-			function(error) {
-				debugger
+			function(error) {				
 				$scope.$emit('event:resource.error', {'title': 'user.messages.resource.create.error.title', 'text': 'user.messages.resource.create.error.message'});
 			});
 
