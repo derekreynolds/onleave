@@ -79,7 +79,7 @@ public class HolidayCalendarResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @RolesAllowed(AuthoritiesConstants.ADMIN)
-    public ResponseEntity<?> post(final HolidayCalendar holidayCalendar) {
+    public ResponseEntity<?> post(@RequestBody final HolidayCalendar holidayCalendar) {
     	
     	holidayCalendarService.save(holidayCalendar);
     	
@@ -95,7 +95,7 @@ public class HolidayCalendarResource {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @RolesAllowed(AuthoritiesConstants.ADMIN)
-    public ResponseEntity<HolidayCalendar> put(final HolidayCalendar holidayCalendar) {
+    public ResponseEntity<HolidayCalendar> put(@RequestBody final HolidayCalendar holidayCalendar) {
     	
     	holidayCalendarService.save(holidayCalendar);   	
     	

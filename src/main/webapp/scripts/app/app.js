@@ -19,6 +19,7 @@ angular.module('onleaveApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascal
                 $translate.use(language);
             });
             ToasterService.initialise();
+            $.material.init();
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {

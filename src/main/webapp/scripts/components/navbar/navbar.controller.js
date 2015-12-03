@@ -16,19 +16,23 @@ angular.module('onleaveApp')
         $scope.rememberMe = true;
         $timeout(function (){angular.element('[ng-model="username"]').focus();});
         $scope.login = function (event) {
+            
             event.preventDefault();
             Auth.login({
                 username: $scope.username,
                 password: $scope.password,
                 rememberMe: $scope.rememberMe
-            }).then(function () {               
-                $('a#login-dropdown').click();      	
+            }).then(function () {                           
+                    	
                 $scope.authenticationError = false;
                 if ($rootScope.previousStateName === 'register') {
                     $state.go('home');
                 } else {
                     $rootScope.back();
                 }
+
+                $('#login-dp').dropdown('toggle');  
+
             }).catch(function (err) {            	
                 $scope.authenticationError = true;
             });

@@ -382,4 +382,25 @@ angular.module('ui')
             }            
     
         };
+    })
+    .directive('createPageButtons', function(){
+        return {
+            restrict: 'E',            
+            templateUrl: '/scripts/components/ui/create.page.buttons.html',
+            replace: true,
+            link: function($scope, iElm, iAttrs, controller) {
+                
+            }
+        };
+    })
+    .directive('createActionButton', function(){
+        
+        return {
+            restrict: 'E',            
+            templateUrl: '/scripts/components/ui/create.action.button.html',
+            replace: true,
+            link: function($scope, iElm, iAttrs, controller) {
+                
+            }
+        };
     });

@@ -12,7 +12,18 @@ angular.module('ui', [])
          * @return {String} A Html <label> text.
         */
         factory.createLabel = function(attributes) {
-           return '<label>' + $filter('translate')(this.getTranslationKey(attributes) + '.label') + '</label>';
+           return '<label class="col-sm-2 control-label">' + $filter('translate')(this.getTranslationKey(attributes) + '.label') + '</label>';
+        };
+
+        /**
+         * Creates an help.
+         * 
+         * @param  {Object} attributes - The attributes of the input control.
+         * @return {String} A Html help block span input
+         */
+        factory.createHelp = function(attributes) {
+            var helpMessage = $filter('translate')(attributes.entityName + '.form.' + attributes.name + '.help');
+            return '<p class="help-block">' + helpMessage + '</p>';        
         };
 
         /**
@@ -80,7 +91,8 @@ angular.module('ui', [])
         */
         factory.createInput = function(attributes, type) {
             attributes.type = type; 
-            var input =  '<input type="' + type + '" class="form-control" ng-model="model"';
+            var input =  '<div class="col-sm-10">';
+                input +=  '<input type="' + type + '" class="form-control" ng-model="model"';
                 input += ' placeholder="' + this.getPlaceHolder(attributes) + '"';
                 angular.forEach(attributes, function(value, key) {
                 // skip these
@@ -90,8 +102,10 @@ angular.module('ui', [])
                 if(typeof attributes.$attr[key] !== 'undefined') 
                   input += attributes.$attr[key] + '="' + value + '" ';                   
                 });
-                input += '/>'; 
-
+                input += '/>';
+                input += factory.createHelp(attributes);
+                input += '</div>'; 
+                input += '<span class="material-input"></span>';
            return input;
         };
 
@@ -255,7 +269,7 @@ angular.module('ui', [])
 
             var translationKey =  this.getTranslationKey(attributes); 
 
-            var error = '<div ng-show="form.'; 
+            var error = '<div class="col-sm-offset-2 has-error" ng-show="form.'; 
             error += attributes.name + '.$dirty && form.';
             error += attributes.name + '.$invalid">'; 
 
@@ -267,7 +281,7 @@ angular.module('ui', [])
             angular.forEach(attributes, function(value, key) {
                 if((key.lastIndexOf('ng', 0) === 0) && (key.lastIndexOf('ngModel', 0) !== 0)) {
                     var constraint = key.substr(2, key.length).toLowerCase();
-                    var errorMessage = $filter('translate')(attributes.entityName + '.messages.validate.' + attributes.name + '.' + constraint);
+                    var errorMessage = $filter('translate')(attributes.entityName + '.form.' + attributes.name + '.validate.' + constraint);
                     error += '<p class="help-block" ng-show="form.';
                     error += attributes.name + '.$error.' + constraint + '">' + errorMessage + '</p>';
                 }                         

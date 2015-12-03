@@ -1,0 +1,34 @@
+{
+	"calendar": {
+		"title": "Calendar",
+		"form": {
+			"title": {
+				"label": "Title",
+				"placeholder": "Irish Calendar",
+				"help": "Enter the title for your calendar.",
+				"validate": {
+					"required": "A title is required."
+				}
+			},
+			"description": {
+				"label": "Description",
+				"placeholder": "This is the public holiday calendar for Ireland.",
+				"help": "Enter a description for your calendar."
+			}
+		},
+		"messages": {
+            "resource": {
+                "create": {
+                    "success": {
+                        "title": "Create Calendar",
+                        "message": "Calendar created successfully."
+                    },
+                    "error": {
+                        "title": "Create Calendar",
+                        "message": "Error creating calendar."
+                    }
+                }
+            }
+        }
+	}
+}

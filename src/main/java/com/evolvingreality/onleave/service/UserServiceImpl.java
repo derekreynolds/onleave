@@ -122,14 +122,11 @@ public class UserServiceImpl extends EntityServiceImpl<User> implements UserServ
 
         SecurityGroup securityGroup = securityGroupService.get(userDto.getSecurityGroupId()).get();
         
-        SecurityGroupMember securityGroupMember = new SecurityGroupMember();
-        
-        securityGroupMember.setUser(newUser);
-        securityGroupMember.setSecurityGroup(securityGroup);
+        SecurityGroupMember securityGroupMember = new SecurityGroupMember(newUser, securityGroup);
         		
         newUser.getGroupMembers().add(securityGroupMember);       
         
-        userRepository.save(newUser);
+        save(newUser);
         
         log.debug("Created Information for User: {}", newUser);
         return newUser;

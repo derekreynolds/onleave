@@ -1,0 +1,29 @@
+<form-view entity-name="calendar">
+
+	<form class="form-horizontal">
+		<div class="form-group">
+		    <label class="col-sm-2 control-label" translate="calendar.form.title.label">Title</label>
+		    <div class="col-sm-10">
+		      <p class="form-control-static">{{calendar.title}}</p>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label class="col-sm-2 control-label" translate="calendar.form.description.label">Description</label>
+		    <div class="col-sm-4">
+		      	<p class="form-control-static">{{calendar.description}}</p>
+		    </div>
+		</div>
+
+	    <div class="form-group">
+	    	<div class="col-sm-offset-6 col-sm-2">
+	    		<a class="btn btn-default btn-block btn-raised" ui-sref="admin.calendar.list" translate="global.button.cancel">Cancel</a>	      		
+	    	</div>
+	    	<div class="col-sm-2">
+	    		<a class="btn btn-primary btn-block btn-raised" ui-sref="admin.calendar.edit({id: calendar.id})" translate="global.button.edit">Edit</a>
+	    	</div>
+	    	<div class="col-sm-2">
+	    		<a class="btn btn-danger btn-block btn-raised" ui-sref="admin.calendar.list" translate="global.button.delete">Delete</a>
+	    	</div>
+  		</div>
+	</form>
+</form-view>

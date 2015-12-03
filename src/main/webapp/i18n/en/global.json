@@ -30,7 +30,8 @@
             },
             "admin": {
                 "main":"Admin",
-                "user": "Users"
+                "user": "Users",
+                "calendar": "Calendars"
             },
             "request": {
                 "main": "My Requests",

@@ -12,8 +12,8 @@
     <property name="autoIncrement" value="false" dbms="oracle"/>
 
 
-	<changeSet id="00000000000002" author="jhipster" dbms="postgresql,oracle">
-   	<createTable tableName="ENTITLEMENT">
+	<changeSet id="00000000000003" author="Derek Reynolds">
+   		<createTable tableName="ENTITLEMENT">
                   <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                       <constraints primaryKey="true" nullable="false"/>
                   </column>

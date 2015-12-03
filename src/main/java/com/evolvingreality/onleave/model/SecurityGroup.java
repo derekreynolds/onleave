@@ -23,8 +23,8 @@ import javax.validation.constraints.Size;
  * @author Derek Reynolds
  * @since 1.0
  */
-@Table(name="SECURITY_GROUP")
 @Entity
+@Table(name="SECURITY_GROUP")
 public class SecurityGroup extends AbstractAuditingEntity {
 
     @Id

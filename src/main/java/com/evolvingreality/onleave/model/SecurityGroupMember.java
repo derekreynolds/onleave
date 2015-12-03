@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Derek Reynolds
  * @since 1.0
  */
-@Table(name="SECURITY_GROUP_MEMBER")
 @Entity
+@Table(name="SECURITY_GROUP_MEMBER")
 public class SecurityGroupMember extends AbstractAuditingEntity {
 
     @Id
@@ -30,7 +30,7 @@ public class SecurityGroupMember extends AbstractAuditingEntity {
 	
 	@JsonIgnore
     @NotNull
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(optional = false, targetEntity = User.class)
     @JoinColumn(name="user_id", referencedColumnName="id")
     private User user;   
 

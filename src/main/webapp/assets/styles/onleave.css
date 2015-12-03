@@ -186,14 +186,14 @@ Login Dialog
   color: #737ddc; }
 
 .title {
-  color: #0c7cd5;
+  color: #2196F3;
   font-weight: 600;
   margin-bottom: 40px; }
 
 .float {
   position: absolute;
   left: 90%;
-  bottom: -10%;
+  bottom: -20%;
   z-index: 100; }
 
 /*# sourceMappingURL=onleave.css.map */

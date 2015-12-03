@@ -65,7 +65,8 @@
                     <ul class="dropdown-menu">
                         <li ui-sref-active="active"><a ui-sref="admin.user.list"><i class="fa fa-group"></i>
                                 &nbsp;<span translate="global.menu.admin.user">User</span></a></li>
-        
+                        <li ui-sref-active="active"><a ui-sref="admin.calendar.list"><i class="fa fa-calendar"></i>
+                                &nbsp;<span translate="global.menu.admin.calendar">Calendar</span></a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: $state.includes('system')}" ng-switch-when="true" has-role="ROLE_SYS_ADMIN" class="dropdown pointer">
