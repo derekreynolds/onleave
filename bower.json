@@ -26,7 +26,6 @@
     "sockjs-client": "0.3.4",
     "stomp-websocket": "2.3.4",
     "swagger-ui": "2.0.24",
-    "bootstrap-material-design": "~0.3.0",
     "toastr": "~2.1.2"
   },
   "devDependencies": {
@@ -39,7 +38,7 @@
         "css/font-awesome.min.css"
       ]
     },
-"bootstrap": {
+    "bootstrap": {
       "main": [
         "dist/js/bootstrap.js",
         "dist/css/bootstrap.css",

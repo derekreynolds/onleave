@@ -43,7 +43,8 @@ angular.module('ui', [])
          * @return {String} A Html text input
          */
         factory.createTextAreaInput = function(attributes) {
-            var input =  '<textarea class="form-control" ng-model="model"';
+            var input = '<div class="col-sm-10">';
+                input +=  '<textarea class="form-control" row="3" ng-model="model"';
                 input += ' placeholder="' + this.getPlaceHolder(attributes) + '"';
                 
                 angular.forEach(attributes, function(value, key) {
@@ -54,7 +55,8 @@ angular.module('ui', [])
                     if(typeof attributes.$attr[key] !== 'undefined') 
                       input += attributes.$attr[key] + '="' + value + '" ';                   
                 });
-                input += '></textarea>'; 
+                input += '></textarea>';
+                input += '</div>'; 
 
            return input;       
         };
@@ -104,8 +106,7 @@ angular.module('ui', [])
                 });
                 input += '/>';
                 input += factory.createHelp(attributes);
-                input += '</div>'; 
-                input += '<span class="material-input"></span>';
+                input += '</div>';
            return input;
         };
 

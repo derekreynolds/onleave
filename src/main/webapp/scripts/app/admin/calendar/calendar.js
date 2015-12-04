@@ -53,7 +53,8 @@ angular.module('onleaveApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/admin/calendar/calendar.create.html'
+                        templateUrl: 'scripts/app/admin/calendar/calendar.create.html',
+                        controller: 'CalendarController'
                     }
                 },
                 resolve: {
@@ -71,7 +72,8 @@ angular.module('onleaveApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/admin/calendar/calendar.edit.html'
+                        templateUrl: 'scripts/app/admin/calendar/calendar.edit.html',
+                        controller: 'CalendarController'
                     }
                 },
                 resolve: {

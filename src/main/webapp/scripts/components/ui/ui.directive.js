@@ -36,7 +36,7 @@ angular.module('ui')
             templateUrl: '/scripts/components/ui/form.view.html'
         };
     })
-    .directive('formGroup', function(formService) {           
+    .directive('formControl', function(formService) {           
         return {
             replace: true,
             transclude: true,
@@ -383,10 +383,10 @@ angular.module('ui')
     
         };
     })
-    .directive('createPageButtons', function(){
+    .directive('createPageButtonGroup', function(){
         return {
             restrict: 'E',            
-            templateUrl: '/scripts/components/ui/create.page.buttons.html',
+            templateUrl: '/scripts/components/ui/create.page.button.group.html',
             replace: true,
             link: function($scope, iElm, iAttrs, controller) {
                 
@@ -398,6 +398,17 @@ angular.module('ui')
         return {
             restrict: 'E',            
             templateUrl: '/scripts/components/ui/create.action.button.html',
+            replace: true,
+            link: function($scope, iElm, iAttrs, controller) {
+                
+            }
+        };
+    })
+    .directive('showPageButtonGroup', function(){
+       
+        return {
+            restrict: 'E',            
+            templateUrl: '/scripts/components/ui/show.page.button.group.html',
             replace: true,
             link: function($scope, iElm, iAttrs, controller) {
                 

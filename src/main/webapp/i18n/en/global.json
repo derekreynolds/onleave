@@ -81,11 +81,12 @@
         },
         "button": {
             "back": "Back",
-            "cancel": "Cancel",
-            "delete": "Delete",
-            "edit": "Edit",
-            "save": "Save",
-            "view": "View"
+            "cancel": "<i class=\"fa fa-undo\"></i> Cancel",
+            "delete": "<i class=\"fa fa-minus-circle\"></i> Delete",
+            "edit": "<i class=\"fa fa-pencil-square-o\"></i> Edit",
+            "save": "<i class=\"fa fa-floppy-o\"></i> Save",
+            "view": "View",
+            "create": "<i class=\"fa fa-plus\"></i> Create"
         }
     },    
     "entity": {        

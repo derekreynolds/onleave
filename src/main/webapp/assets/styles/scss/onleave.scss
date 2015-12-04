@@ -150,6 +150,18 @@ ul#strength {
 /* end Password strength bar style */
 
 
+label {
+	font-weight: $bold-font;
+	color: $primary-color;
+}
+
+table {
+	th {
+		font-weight: $bold-font;
+		color: $primary-color;
+	}
+}
+
 .footer {
     position: fixed;
     width: 100%;
