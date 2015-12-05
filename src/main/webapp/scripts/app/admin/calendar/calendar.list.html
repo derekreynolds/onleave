@@ -10,7 +10,7 @@
 	    	</thead>
 
 	    	<tbody>
-	    		<tr ng-repeat="calendar in calendars.content track by calendar.id" ng-click="show(calendar.id)">	
+	    		<tr ng-repeat="calendar in page.content track by calendar.id" ng-click="show(calendar.id)">	
 	    			<td>{{calendar.title}}</td>
 	    			<td>{{calendar.description}}</td> 			  			
 	    		</tr>    		
@@ -18,5 +18,8 @@
 	  	</table>
 		
 	</div>
-	<create-action-button></create-action-button>
+	<div class="row">
+		<onleave-app-pagination></onleave-app-pagination>
+		<create-action-button></create-action-button>
+	</div>
 </form-view>

@@ -10,6 +10,9 @@ function CalendarParentController($scope, $state, RestService) {
 			return RestService.get({id: id});
 		};
 
+		$scope.loadPage = function(pageNumber) {
+			$scope.page = RestService.query();
+		};
 
 		$scope.save = function(entity) {
 
@@ -37,14 +40,11 @@ angular.module('onleaveApp')
 		if(angular.isDefined($stateParams.id)) {
 			$scope.calendar = $scope.load($stateParams.id);
 		} else {
-
 			$scope.calendar = {};
-
-			$scope.calendars = CalendarService.query();		
+			$scope.loadPage(0);					
 		}
 
-		$scope.create = function() {
-			debugger
+		$scope.create = function() {			
 			$scope.save(_.clone($scope.calendar, true));
 		};
 

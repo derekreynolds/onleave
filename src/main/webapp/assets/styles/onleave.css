@@ -198,10 +198,7 @@ Login Dialog
   font-weight: 600;
   margin-bottom: 40px; }
 
-.float {
-  position: absolute;
-  left: 90%;
-  bottom: -20%;
-  z-index: 100; }
+.page-list-pagination {
+  margin: 0; }
 
 /*# sourceMappingURL=onleave.css.map */
